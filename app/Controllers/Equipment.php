@@ -31,6 +31,7 @@ class Equipment extends BaseController
         $code_formula = $vars['code_formula'];
         $name_equipment = $vars['name_equipment'];
         $status_equipment = $vars['status_equipment'];
+        $mode_equipment = $vars['mode_equipment'];
         $line_equipment = $vars['line_equipment'];
         $target = $vars['target'];
         $actual = $vars['actual'];
@@ -130,6 +131,7 @@ class Equipment extends BaseController
         $code_formula = $vars['code_formula'];
         $name_equipment = $vars['name_equipment'];
         $status_equipment = $vars['status_equipment'];
+        $mode_equipment = $vars['mode_equipment'];
         $line_equipment = $vars['line_equipment'];
         $target = $vars['target'];
         $actual = $vars['actual'];
