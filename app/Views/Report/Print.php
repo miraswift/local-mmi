@@ -265,13 +265,13 @@
                 $resultbatchCycleTime = str_replace(':', '.', $batchCycleTimeMinutes);
 
                 // For Downtime Mixing To Underhopper
-                $partsBatch = explode("-", $no_batch);
-                $prefix1 = $partsBatch[0];
-                $prefix2 = $partsBatch[1];
-                $batchNumber = isset($partsBatch[2]) ? (int)$partsBatch[2] : 0;
-                $nextBatchNumber = $batchNumber + 1;
+                // $partsBatch = explode("", $no_batch);
+                // $prefix1 = $partsBatch[0];
+                // $prefix2 = $partsBatch[1];
+                // $batchNumber = $no_batch;
+                $nextBatchNumber = (int)$no_batch + 1;
 
-                $nextBatch = $prefix1 . '-' . $prefix2 . '-' . $nextBatchNumber;
+                $nextBatch = $nextBatchNumber;
                 $underhopperFull = $equipmentModel->where('no_batch', $no_batch)->where('name_equipment', 'UNDERHOPPER FULL')->first();
                 $underhopperDischargeOn = $equipmentModel->where('no_batch', $nextBatch)->where('name_equipment', 'UNDERHOPPER DISCHARGE')->where('status_equipment', 'ON')->first();
 
@@ -311,6 +311,12 @@
                 <?php foreach ($onEquipments as $onEquipment): ?>
                     <?php
                     $offEquipment = $equipmentModel->where('no_batch', $no_batch)->where('name_equipment', $onEquipment['name_equipment'])->where('status_equipment', 'OFF')->first();
+
+                    $actualEquipment = $offEquipment ? ($onEquipment['actual_equipment'] - $offEquipment['actual_equipment']) / 10 : 0;
+
+                    if ($actualEquipment < 0) {
+                        $actualEquipment = $offEquipment['actual_equipment'] / 10;
+                    }
                     ?>
                     <tr class="border">
                         <td class="border"><?= $onEquipment['name_equipment'] ?></td>
@@ -318,7 +324,7 @@
                         <td class="border text-center"><?= $onEquipment['time_equipment'] ?></td>
                         <td class="border text-center"><?= $offEquipment ? $offEquipment['time_equipment'] : 'Still running' ?></td>
                         <td class="border text-center"><?= $offEquipment ? $offEquipment['duration_equipment'] : '-' ?></td>
-                        <td class="border text-center"><?= $offEquipment ? number_format($offEquipment['actual_equipment'], 0, '.', ',') : '-' ?></td>
+                        <td class="border text-center"><?= $offEquipment ? number_format($actualEquipment, 1, '.', '') : '-' ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php endforeach; ?>
