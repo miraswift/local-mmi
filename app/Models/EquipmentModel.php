@@ -57,71 +57,78 @@ class EquipmentModel extends Model
         return $this->findAll();
     }
 
-    public function getDossingFirst($no_batch)
+    public function getDossingFirst($no_spk, $no_batch)
     {
         $this->select('MIN(id_equipment) AS id_equipment');
         $this->where('type_equipment', 'DOSSING');
         $this->where('status_equipment', 'ON');
+        $this->where('no_spk', $no_spk);
         $this->where('no_batch', $no_batch);
 
         return $this->first();
     }
 
-    public function getDossingLast($no_batch)
+    public function getDossingLast($no_spk, $no_batch)
     {
         $this->select('MAX(id_equipment) AS id_equipment');
         $this->where('type_equipment', 'DOSSING');
         $this->where('status_equipment', 'OFF');
+        $this->where('no_spk', $no_spk);
         $this->where('no_batch', $no_batch);
 
         return $this->first();
     }
 
-    public function getWeighingDischargeFirst($no_batch)
+    public function getWeighingDischargeFirst($no_spk, $no_batch)
     {
         $this->select('MIN(id_equipment) AS id_equipment');
         $this->where('name_equipment', 'WEIGHING DISCHARGE');
         $this->where('status_equipment', 'ON');
+        $this->where('no_spk', $no_spk);
         $this->where('no_batch', $no_batch);
 
         return $this->first();
     }
 
-    public function getWeighingDischargeLast($no_batch)
+    public function getWeighingDischargeLast($no_spk, $no_batch)
     {
         $this->select('MAX(id_equipment) AS id_equipment');
         $this->where('name_equipment', 'WEIGHING DISCHARGE');
         $this->where('status_equipment', 'OFF');
+        $this->where('no_spk', $no_spk);
         $this->where('no_batch', $no_batch);
 
         return $this->first();
     }
 
-    public function getDischargeOn($no_batch)
+    public function getDischargeOn($no_spk, $no_batch)
     {
         // $this->select('MAX(id_equipment) AS id_equipment');
         $this->where('name_equipment', 'WEIGHING DISCHARGE');
         $this->where('status_equipment', 'ON');
+        $this->where('no_spk', $no_spk);
         $this->where('no_batch', $no_batch);
 
         return $this->first();
     }
 
-    public function getMixingOn($no_batch)
+    public function getMixingOn($no_spk, $no_batch)
     {
         // $this->select('MAX(id_equipment) AS id_equipment');
         $this->where('name_equipment', 'MIXING');
         $this->where('status_equipment', 'ON');
+        $this->where('no_spk', $no_spk);
         $this->where('no_batch', $no_batch);
 
         return $this->first();
     }
 
-    public function getDischargeUhOff($no_batch)
+    public function getDischargeUhOff($no_spk, $no_batch)
     {
         // $this->select('MAX(id_equipment) AS id_equipment');
         $this->where('name_equipment', 'UNDERHOPPER DISCHARGE');
         $this->where('status_equipment', 'OFF');
+        $this->where('no_spk', $no_spk);
         $this->where('no_batch', $no_batch);
 
         return $this->first();

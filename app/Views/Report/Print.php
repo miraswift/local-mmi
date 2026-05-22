@@ -105,7 +105,7 @@
                 $no_batch = $batch['no_batch'];
 
                 // Material Time (Un-used because material is pararel)
-                $dossings = $equipmentModel->where('no_batch', $no_batch)->where('type_equipment', 'DOSSING')->findAll();
+                $dossings = $equipmentModel->where('no_spk', $no_spk)->where('no_batch', $no_batch)->where('type_equipment', 'DOSSING')->findAll();
                 $totalMaterialTime = 0;
                 foreach ($dossings as $dossingTime) {
                     if ($dossingTime['status_equipment'] == 'OFF') {
@@ -115,9 +115,9 @@
                 // Dossing Time
                 $totalDossingTime = new DateTime('00:00:00');
                 $cloneTotalDossingTime = clone $totalDossingTime;
-                $idDossingFirst = $equipmentModel->getDossingFirst($no_batch);
+                $idDossingFirst = $equipmentModel->getDossingFirst($no_spk, $no_batch);
                 $dossingFirst = $equipmentModel->where('id_equipment', $idDossingFirst['id_equipment'])->first();
-                $idDossingLast = $equipmentModel->getDossingLast($no_batch);
+                $idDossingLast = $equipmentModel->getDossingLast($no_spk, $no_batch);
                 $dossingLast = $equipmentModel->where('id_equipment', $idDossingLast['id_equipment'])->first();
 
                 // Null check
@@ -153,9 +153,9 @@
                 // $weighingDischargeOff = 0;
                 $totalWeighingDischargeTime = new DateTime('00:00:00');
                 $cloneTotalWeighingDischargeTime = clone $totalWeighingDischargeTime;
-                $idWeighingDischargeFirst = $equipmentModel->getWeighingDischargeFirst($no_batch);
+                $idWeighingDischargeFirst = $equipmentModel->getWeighingDischargeFirst($no_spk, $no_batch);
                 $weighingDischargeFirst = $equipmentModel->where('id_equipment', $idWeighingDischargeFirst['id_equipment'])->first();
-                $idWeighingDischargeLast = $equipmentModel->getWeighingDischargeLast($no_batch);
+                $idWeighingDischargeLast = $equipmentModel->getWeighingDischargeLast($no_spk, $no_batch);
                 $weighingDischargeLast = $equipmentModel->where('id_equipment', $idWeighingDischargeLast['id_equipment'])->first();
 
                 // Null check
@@ -195,8 +195,8 @@
                 $mixingTimeOff = date('Y-m-d H:i:s');
                 $totalMixingTime = new DateTime('00:00:00');
                 $cloneTotalMixingTime = clone $totalMixingTime;
-                $getMixingOn = $equipmentModel->getMixingOn($no_batch);
-                $getDisrchargeUhOff = $equipmentModel->getDischargeUhOff($no_batch);
+                $getMixingOn = $equipmentModel->getMixingOn($no_spk, $no_batch);
+                $getDisrchargeUhOff = $equipmentModel->getDischargeUhOff($no_spk, $no_batch);
                 if ($getMixingOn) {
                     $mixingTimeOn = $getMixingOn['date_equipment'] . ' ' . $getMixingOn['time_equipment'];
                 }
@@ -221,7 +221,7 @@
 
                 // Underhopper Discharge Time
                 $totalUnderhopperDischargeTime = "00:00:00";
-                $underhopperDischarge = $equipmentModel->where('no_batch', $no_batch)->where('name_equipment', 'UNDERHOPPER DISCHARGE')->where('status_equipment', 'OFF')->first();
+                $underhopperDischarge = $equipmentModel->where('no_spk', $no_spk)->where('no_batch', $no_batch)->where('name_equipment', 'UNDERHOPPER DISCHARGE')->where('status_equipment', 'OFF')->first();
 
                 if ($underhopperDischarge) {
                     $totalUnderhopperDischargeTime = $underhopperDischarge['duration_equipment'];
@@ -258,7 +258,7 @@
                     // 'batch_cycle_time' => 60 / $resultFeedingTime,
                 ];
 
-                $onEquipments = $equipmentModel->where('no_batch', $no_batch)->where('status_equipment', 'ON')->findAll();
+                $onEquipments = $equipmentModel->where('no_spk', $no_spk)->where('no_batch', $no_batch)->where('status_equipment', 'ON')->findAll();
 
                 // Cycle Batch
                 $batchCycleTimeMinutes = substr($resultFeedingTime, 3);
@@ -272,8 +272,8 @@
                 $nextBatchNumber = (int)$no_batch + 1;
 
                 $nextBatch = $nextBatchNumber;
-                $underhopperFull = $equipmentModel->where('no_batch', $no_batch)->where('name_equipment', 'UNDERHOPPER FULL')->first();
-                $underhopperDischargeOn = $equipmentModel->where('no_batch', $nextBatch)->where('name_equipment', 'UNDERHOPPER DISCHARGE')->where('status_equipment', 'ON')->first();
+                $underhopperFull = $equipmentModel->where('no_spk', $no_spk)->where('no_batch', $no_batch)->where('name_equipment', 'UNDERHOPPER FULL')->first();
+                $underhopperDischargeOn = $equipmentModel->where('no_spk', $no_spk)->where('no_batch', $nextBatch)->where('name_equipment', 'UNDERHOPPER DISCHARGE')->where('status_equipment', 'ON')->first();
 
                 if ($underhopperFull) {
                     $timeUnderhopperFull = strtotime("1970-01-01 " . $underhopperFull['time_equipment']);
@@ -310,7 +310,7 @@
                 </tr>
                 <?php foreach ($onEquipments as $onEquipment): ?>
                     <?php
-                    $offEquipment = $equipmentModel->where('no_batch', $no_batch)->where('name_equipment', $onEquipment['name_equipment'])->where('status_equipment', 'OFF')->first();
+                    $offEquipment = $equipmentModel->where('no_spk', $no_spk)->where('no_batch', $no_batch)->where('name_equipment', $onEquipment['name_equipment'])->where('status_equipment', 'OFF')->first();
 
                     $actualEquipment = $offEquipment ? ($onEquipment['actual_equipment'] - $offEquipment['actual_equipment']) / 10 : 0;
 
