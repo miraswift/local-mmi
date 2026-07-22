@@ -139,10 +139,10 @@ class Equipment extends BaseController
         $date_equipment = $vars['date_equipment'];
         $time_equipment = $vars['time_equipment'];
 
-        $plant = $this->plantModel->where('code_plant', $code_plant)->first();
+        // $plant = $this->plantModel->where('code_plant', $code_plant)->first();
 
         $equipmentData = [
-            'id_plant' => $plant ? $plant['id_plant'] : 0,
+            'id_plant' => 1,
             'type_log_equipment' => $type_equipment,
             'no_spk' => $no_spk,
             'no_batch' => $no_batch,
