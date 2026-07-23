@@ -341,7 +341,7 @@
                     }
                     ?>
                     <tr class="border">
-                        <td class="border"><?= $onEquipment['name_equipment'] ?></td>
+                        <td class="border"><?= $onEquipment['name_equipment'] ?> <b>(<?= $onEquipment['mode_equipment'] ?>)</b></td>
                         <td class="border text-center"><?= $onEquipment['line_equipment'] ?></td>
                         <td class="border text-center"><?= $onEquipment['time_equipment'] ?></td>
                         <td class="border text-center"><?= $offEquipment ? $offEquipment['time_equipment'] : 'Still running' ?></td>
