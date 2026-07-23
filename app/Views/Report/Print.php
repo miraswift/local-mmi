@@ -325,11 +325,13 @@
 
                     $actualColor = '';
 
-                    $targetEquipment = $offEquipment ? $offEquipment['target_equipment'] / 10 : 0;
+                    $targetEquipment = $onEquipment ? $onEquipment['target_equipment'] / 10 : 0;
 
                     if ($actualEquipment < $targetEquipment) {
                         $actualColor = 'bg-yellow';
-                    } else if ($actualEquipment > $targetEquipment) {
+                    }
+
+                    if ($actualEquipment > $targetEquipment) {
                         $actualColor = 'bg-red';
                     }
                     ?>
@@ -339,7 +341,7 @@
                         <td class="border text-center"><?= $onEquipment['time_equipment'] ?></td>
                         <td class="border text-center"><?= $offEquipment ? $offEquipment['time_equipment'] : 'Still running' ?></td>
                         <td class="border text-center"><?= $offEquipment ? $offEquipment['duration_equipment'] : '-' ?></td>
-                        <td class="border text-center"><?= $offEquipment ? number_format($targetEquipment, 1, '.', '') : '-' ?></td>
+                        <td class="border text-center"><?= $onEquipment ? number_format($targetEquipment, 1, '.', '') : '-' ?></td>
                         <td class="border text-center"><?= $offEquipment ? number_format($actualEquipment, 1, '.', '') : '-' ?></td>
                     </tr>
                 <?php endforeach; ?>
