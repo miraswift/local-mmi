@@ -327,11 +327,14 @@
 
                     $targetEquipment = $onEquipment ? $onEquipment['target_equipment'] / 10 : 0;
 
-                    if ($actualEquipment < $targetEquipment) {
+                    $targetEquipmentTop = $targetEquipment + 5;
+                    $targetEquipmentBottom = $targetEquipment - 5;
+
+                    if ($actualEquipment < $targetEquipmentBottom) {
                         $actualColor = 'bg-yellow';
                     }
 
-                    if ($actualEquipment > $targetEquipment) {
+                    if ($actualEquipment > $targetEquipmentTop) {
                         $actualColor = 'bg-red';
                     }
                     ?>
