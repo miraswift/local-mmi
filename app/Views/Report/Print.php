@@ -98,6 +98,7 @@
                 <th class="border">Time ON</th>
                 <th class="border">Time OFF</th>
                 <th class="border">Duration</th>
+                <th class="border">Target</th>
                 <th class="border">Actual</th>
             </tr>
             <?php foreach ($batchs as $batch): ?>
@@ -324,6 +325,7 @@
                         <td class="border text-center"><?= $onEquipment['time_equipment'] ?></td>
                         <td class="border text-center"><?= $offEquipment ? $offEquipment['time_equipment'] : 'Still running' ?></td>
                         <td class="border text-center"><?= $offEquipment ? $offEquipment['duration_equipment'] : '-' ?></td>
+                        <td class="border text-center"><?= $offEquipment ? number_format($offEquipment['target_equipment'], 1, '.', '') : '-' ?></td>
                         <td class="border text-center"><?= $offEquipment ? number_format($actualEquipment, 1, '.', '') : '-' ?></td>
                     </tr>
                 <?php endforeach; ?>
