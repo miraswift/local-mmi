@@ -126,7 +126,7 @@ class EquipmentModel extends Model
     public function getDischargeUhOff($no_spk, $no_batch)
     {
         // $this->select('MAX(id_equipment) AS id_equipment');
-        $this->where('name_equipment', 'UNDERHOPPER DISCHARGE');
+        $this->where('name_equipment', 'DISSCHARGE UNDERHOPPER');
         $this->where('status_equipment', 'OFF');
         $this->where('no_spk', $no_spk);
         $this->where('no_batch', $no_batch);
