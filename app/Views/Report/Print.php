@@ -83,6 +83,10 @@
         .bg-red {
             background-color: red;
         }
+
+        .bg-yellow {
+            background-color: yellow;
+        }
     </style>
     <div class="row">
         <div class="column" style="width: 100%;">
@@ -318,6 +322,16 @@
                     if ($actualEquipment < 0) {
                         $actualEquipment = $offEquipment['actual_equipment'] / 10;
                     }
+
+                    $actualColor = '';
+
+                    $targetEquipment = $offEquipment['target_equipment'] / 10;
+
+                    if ($actualEquipment < $targetEquipment) {
+                        $actualColor = 'bg-yellow';
+                    } else if ($actualEquipment > $targetEquipment) {
+                        $actualColor = 'bg-red';
+                    }
                     ?>
                     <tr class="border">
                         <td class="border"><?= $onEquipment['name_equipment'] ?></td>
@@ -325,8 +339,8 @@
                         <td class="border text-center"><?= $onEquipment['time_equipment'] ?></td>
                         <td class="border text-center"><?= $offEquipment ? $offEquipment['time_equipment'] : 'Still running' ?></td>
                         <td class="border text-center"><?= $offEquipment ? $offEquipment['duration_equipment'] : '-' ?></td>
-                        <td class="border text-center"><?= $offEquipment ? number_format($offEquipment['target_equipment'] / 10, 1, '.', '') : '-' ?></td>
-                        <td class="border text-center"><?= $offEquipment ? number_format($actualEquipment, 1, '.', '') : '-' ?></td>
+                        <td class="border text-center"><?= $offEquipment ? number_format($targetEquipment, 1, '.', '') : '-' ?></td>
+                        <td class="border text-center <?= $actualColor ?>"><?= $offEquipment ? number_format($actualEquipment, 1, '.', '') : '-' ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php endforeach; ?>
