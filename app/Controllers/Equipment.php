@@ -37,6 +37,7 @@ class Equipment extends BaseController
         $actual = $vars['actual'];
         $date_equipment = $vars['date_equipment'];
         $time_equipment = $vars['time_equipment'];
+        $name_product = $vars['name_product'];
 
 
         $checkEquipment = $this->equipmentModel->where('no_batch', $no_batch)->where('name_equipment', $name_equipment)->where('status_equipment', $status_equipment)->where('line_equipment', $line_equipment)->where('date_equipment', $date_equipment)->first();
@@ -96,6 +97,7 @@ class Equipment extends BaseController
                 'duration_equipment' => $duration_equipment,
                 'target_equipment' => $target,
                 'actual_equipment' => $actual,
+                'name_product' => $name_product,
             ];
 
             $save = $this->equipmentModel->save($equipmentData);
@@ -138,6 +140,7 @@ class Equipment extends BaseController
         $actual = $vars['actual'];
         $date_equipment = $vars['date_equipment'];
         $time_equipment = $vars['time_equipment'];
+        $name_product = $vars['name_product'];
 
         // $plant = $this->plantModel->where('code_plant', $code_plant)->first();
 
@@ -155,6 +158,7 @@ class Equipment extends BaseController
             'time_log_equipment' => date('H:i:s', strtotime($time_equipment)),
             'target_log_equipment' => $target,
             'actual_log_equipment' => $actual,
+            'name_product' => $name_product,
         ];
 
         $save = $this->logEquipmentModel->save($equipmentData);
