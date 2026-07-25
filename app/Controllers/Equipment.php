@@ -46,6 +46,8 @@ class Equipment extends BaseController
             $checkEquipment = false;
         }
 
+        $telegramResponse = null;
+
         if ($checkEquipment) {
             $result = [
                 'code' => 400,
@@ -86,12 +88,12 @@ class Equipment extends BaseController
 
                 if ($actual < $targetEquipmentBottom) {
                     $message = "Penimbangan Kurang\n\nProduk: $name_product\nMaterial: $name_equipment\nNo SPK: $no_spk\nNo Batch Counting: $no_batch\nTarget: $target\nActual: $actual";
-                    sendMessageTelegram($message);
+                    $telegramResponse = sendMessageTelegram($message);
                 }
 
                 if ($actual > $targetEquipmentTop) {
                     $message = "Penimbangan Lebih\n\nProduk: $name_product\nMaterial: $name_equipment\nNo SPK: $no_spk\nNo Batch Counting: $no_batch\nTarget: $target\nActual: $actual";
-                    sendMessageTelegram($message);
+                    $telegramResponse = sendMessageTelegram($message);
                 }
             }
 
@@ -121,6 +123,7 @@ class Equipment extends BaseController
                     'status' => 'failed',
                     'msg' => "Equipment not saved",
                     'detail' => $this->equipmentModel->errors(),
+                    'telegram_response' => $telegramResponse,
                 ];
 
                 return $this->response->setStatusCode(400)->setJSON($result);
@@ -129,6 +132,7 @@ class Equipment extends BaseController
                     'code' => 200,
                     'status' => 'ok',
                     'msg' => "Equipment saved succesfully",
+                    'telegram_response' => $telegramResponse,
                 ];
 
                 return $this->response->setStatusCode(200)->setJSON($result);
