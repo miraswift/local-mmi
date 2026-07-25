@@ -326,7 +326,7 @@
                     // $actualEquipment = $offEquipment ? ($onEquipment['actual_equipment'] - $offEquipment['actual_equipment']) / 10 : 0;
 
                     // if ($actualEquipment < 0) {
-                    $actualEquipment = $offEquipment['actual_equipment'] / 10;
+                    $actualEquipment = $offEquipment ? $offEquipment['actual_equipment'] / 10 : 0;
                     // }
 
                     $actualColor = 'bg-green';
