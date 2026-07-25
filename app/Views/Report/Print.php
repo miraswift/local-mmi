@@ -87,6 +87,10 @@
         .bg-yellow {
             background-color: yellow;
         }
+
+        .bg-green {
+            background-color: green;
+        }
     </style>
     <div class="row">
         <div class="column" style="width: 100%;">
@@ -325,7 +329,7 @@
                         $actualEquipment = $offEquipment['actual_equipment'] / 10;
                     }
 
-                    $actualColor = '';
+                    $actualColor = 'bg-green';
 
                     $targetEquipment = $onEquipment ? $onEquipment['target_equipment'] / 10 : 0;
 
