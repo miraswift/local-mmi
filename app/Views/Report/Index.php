@@ -59,6 +59,7 @@
                                         <tr>
                                             <th class="text-center">No</th>
                                             <th>No SPK</th>
+                                            <th>Produk</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -70,6 +71,7 @@
                                                 <tr>
                                                     <td class="text-center"><?= $no++; ?></td>
                                                     <td><?= $batch['no_spk'] ?></td>
+                                                    <td><?= $batch['name_product'] ?></td>
                                                     <td>
                                                         <a href="/report/<?= $batch['no_spk'] ?>" class="btn btn-primary" title="Detail" target="__blank"><i class="fas fa-print"></i></a>
                                                     </td>

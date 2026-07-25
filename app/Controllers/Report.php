@@ -42,6 +42,7 @@ class Report extends BaseController
     public function print($no_spk)
     {
         $data['no_spk'] = $no_spk;
+        $data['groupSpk'] = $this->equipmentModel->getSpkGroupByNoSpk($no_spk);
         $data['batchs'] = $this->equipmentModel->getBatchNumberGroupBySpk($no_spk);
         $data['equipmentModel'] = $this->equipmentModel;
 

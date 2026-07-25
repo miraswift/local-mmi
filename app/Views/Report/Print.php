@@ -96,6 +96,7 @@
         <div class="column" style="width: 100%;">
             <h1 class="text-center">Report Cycletime</h1>
             <h2 class="text-center">SPK: <?= $no_spk ?></h2>
+            <h2 class="text-center">Produk: <?= $groupSpk['name_product'] ?></h2>
         </div>
         <br>
         <br>

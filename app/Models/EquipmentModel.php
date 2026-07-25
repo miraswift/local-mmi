@@ -57,6 +57,15 @@ class EquipmentModel extends Model
         return $this->findAll();
     }
 
+    public function getSpkGroupByNoSpk($no_spk)
+    {
+        $this->where('no_spk', $no_spk);
+        $this->groupBy('no_spk');
+        $this->orderBy('no_spk', 'DESC');
+
+        return $this->first();
+    }
+
     public function getDossingFirst($no_spk, $no_batch)
     {
         $this->select('MIN(id_equipment) AS id_equipment');
