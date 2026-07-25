@@ -117,7 +117,7 @@ class Equipment extends BaseController
             $save = $this->equipmentModel->save($equipmentData);
 
             if (!empty($message)) {
-                $telegramResponse = $telegramResponse = sendMessageTelegram($message);
+                $telegramResponse = sendMessageTelegram($message);
             }
 
             if (!$save) {

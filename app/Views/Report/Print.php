@@ -323,11 +323,11 @@
                     <?php
                     $offEquipment = $equipmentModel->where('no_spk', $no_spk)->where('no_batch', $no_batch)->where('name_equipment', $onEquipment['name_equipment'])->where('status_equipment', 'OFF')->first();
 
-                    $actualEquipment = $offEquipment ? ($onEquipment['actual_equipment'] - $offEquipment['actual_equipment']) / 10 : 0;
+                    // $actualEquipment = $offEquipment ? ($onEquipment['actual_equipment'] - $offEquipment['actual_equipment']) / 10 : 0;
 
-                    if ($actualEquipment < 0) {
-                        $actualEquipment = $offEquipment['actual_equipment'] / 10;
-                    }
+                    // if ($actualEquipment < 0) {
+                    $actualEquipment = $offEquipment['actual_equipment'] / 10;
+                    // }
 
                     $actualColor = 'bg-green';
 
