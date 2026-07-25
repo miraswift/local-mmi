@@ -47,6 +47,7 @@ class Equipment extends BaseController
         }
 
         $telegramResponse = null;
+        $message = "";
 
         if ($checkEquipment) {
             $result = [
@@ -88,12 +89,10 @@ class Equipment extends BaseController
 
                 if ($actual < $targetEquipmentBottom) {
                     $message = "Penimbangan Kurang\n\nProduk: $name_product\nMaterial: $name_equipment\nNo SPK: $no_spk\nNo Batch Counting: $no_batch\nTarget: $target\nActual: $actual";
-                    $telegramResponse = sendMessageTelegram($message);
                 }
 
                 if ($actual > $targetEquipmentTop) {
                     $message = "Penimbangan Lebih\n\nProduk: $name_product\nMaterial: $name_equipment\nNo SPK: $no_spk\nNo Batch Counting: $no_batch\nTarget: $target\nActual: $actual";
-                    $telegramResponse = sendMessageTelegram($message);
                 }
             }
 
@@ -116,6 +115,10 @@ class Equipment extends BaseController
             ];
 
             $save = $this->equipmentModel->save($equipmentData);
+
+            if (!empty($message)) {
+                $telegramResponse = $telegramResponse = sendMessageTelegram($message);
+            }
 
             if (!$save) {
                 $result = [
