@@ -87,12 +87,15 @@ class Equipment extends BaseController
                 $targetEquipmentTop = $target + 50;
                 $targetEquipmentBottom = $actual - 50;
 
+                $targetFix = $target / 10;
+                $actualFix = $actual / 10;
+
                 if ($actual < $targetEquipmentBottom) {
                     $message = "Penimbangan Kurang\n\nProduk: $name_product\nMaterial: $name_equipment\nNo SPK: $no_spk\nNo Batch Counting: $no_batch\nTarget: $target\nActual: $actual";
                 }
 
                 if ($actual > $targetEquipmentTop) {
-                    $message = "Penimbangan Lebih\n\nProduk: $name_product\nMaterial: $name_equipment\nNo SPK: $no_spk\nNo Batch Counting: $no_batch\nTarget: $target\nActual: $actual";
+                    $message = "Penimbangan Lebih\n\nProduk: $name_product\nMaterial: $name_equipment\nNo SPK: $no_spk\nNo Batch Counting: $no_batch\nTarget: $targetFix\nActual: $actualFix";
                 }
             }
 
