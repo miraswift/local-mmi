@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-class TelegramHelper
+class telegram_helper
 {
     public function sendMessageTelegram($message)
     {
