@@ -46,7 +46,7 @@ class Equipment extends BaseController
             $checkEquipment = false;
         }
 
-        $telegramResponse = null;
+        $telegramResponse = array("empty");
         $message = "";
 
         if ($checkEquipment) {
