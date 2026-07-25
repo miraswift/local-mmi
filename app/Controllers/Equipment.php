@@ -84,8 +84,8 @@ class Equipment extends BaseController
 
                 $duration_equipment = $intervalTotalEquipmentTime;
 
-                $targetEquipmentTop = $target + 5;
-                $targetEquipmentBottom = $actual - 5;
+                $targetEquipmentTop = $target + 50;
+                $targetEquipmentBottom = $actual - 50;
 
                 if ($actual < $targetEquipmentBottom) {
                     $message = "Penimbangan Kurang\n\nProduk: $name_product\nMaterial: $name_equipment\nNo SPK: $no_spk\nNo Batch Counting: $no_batch\nTarget: $target\nActual: $actual";
