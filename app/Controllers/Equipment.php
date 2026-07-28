@@ -85,7 +85,7 @@ class Equipment extends BaseController
                 $duration_equipment = $intervalTotalEquipmentTime;
 
                 $targetEquipmentTop = $target + 50;
-                $targetEquipmentBottom = $actual - 50;
+                $targetEquipmentBottom = $target - 50;
 
                 $targetFix = $target / 10;
                 $actualFix = $actual / 10;
