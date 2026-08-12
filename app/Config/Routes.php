@@ -26,3 +26,5 @@ $routes->get('/reportbyhour', 'ReportByHour::index');
 $routes->get('/reportbyhour/(:any)', 'ReportByHour::print/$1');
 // Selector
 $routes->post('/selector/create', 'Selector::create');
+// Additif
+$routes->post('/additif/create', 'Additif::create');

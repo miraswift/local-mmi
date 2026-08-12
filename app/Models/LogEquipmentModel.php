@@ -11,7 +11,7 @@ class LogEquipmentModel extends Model
 
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['id_plant', 'type_log_equipment', 'no_spk', 'no_batch', 'code_formula', 'name_log_equipment', 'status_log_equipment', 'line_log_equipment', 'date_log_equipment', 'time_log_equipment', 'target_log_equipment', 'actual_log_equipment', 'deleted_at'];
+    protected $allowedFields = ['id_plant', 'type_log_equipment', 'no_spk', 'no_batch', 'code_formula', 'name_log_equipment', 'status_log_equipment', 'line_log_equipment', 'date_log_equipment', 'time_log_equipment', 'target_log_equipment', 'actual_log_equipment', 'deleted_at', 'mode_equipment', 'name_product', 'no_batch_additif'];
 
     protected $useTimestamps = true;
 }
