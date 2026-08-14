@@ -165,12 +165,12 @@
                                         <p>Report</p>
                                     </a>
                                 </li>
-                                <!-- <li class="nav-item">
+                                <li class="nav-item">
                                     <a href="/reportbyhour" class="nav-link <?= $menu == 'ReportByHour' ? 'active' : '' ?>">
                                         <i class="fas fa-clock nav-icon"></i>
                                         <p>Batch By Hour</p>
                                     </a>
-                                </li> -->
+                                </li>
                             </ul>
                         </li>
                     </ul>
