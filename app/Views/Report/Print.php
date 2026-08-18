@@ -318,6 +318,7 @@
                         <br>
                         <span>Delay: <?= $resultDelayTime ?></span>
                         <span>Delay Mixing To Underhopper: <?= $underhopperFull && $underhopperDischargeOn ? $resultDowntimeMixingToUnderhopper : 0 ?></span>
+                        <br>
                         <span>No Batch Additif: <?= $batch['no_batch_additif'] ?></span>
                     </th>
                 </tr>
