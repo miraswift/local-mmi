@@ -28,3 +28,12 @@ $routes->get('/reportbyhour/(:any)', 'ReportByHour::print/$1');
 $routes->post('/selector/create', 'Selector::create');
 // Additif
 $routes->post('/additif/create', 'Additif::create');
+// Auth
+$routes->get('/login', 'Auth::index');
+$routes->post('/login/validate', 'Auth::login');
+$routes->post('/logout', 'Auth::logout');
+// Downtime
+$routes->get('/downtime', 'Downtime::index');
+$routes->post('/downtime/create', 'Downtime::create');
+$routes->post('/downtime/update', 'Downtime::update');
+$routes->post('/downtime/delete', 'Downtime::delete');

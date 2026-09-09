@@ -70,28 +70,25 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <!-- Navbar Search -->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
+                <!-- User Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="fas fa-user"></i>
+                        <!-- <span class="badge badge-warning navbar-badge">15</span> -->
                     </a>
-                    <div class="navbar-search-block">
-                        <form class="form-inline">
-                            <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-navbar" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">User Menu</span>
+                        <!-- <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-user mr-2"></i> Profil
+                        </a> -->
+                        <div class="dropdown-divider"></div>
+                        <a href="/logout" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                        </a>
+                        <div class="dropdown-divider"></div>
                     </div>
                 </li>
-
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -135,44 +132,64 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/" class="nav-link <?= $menu == 'StockSilo' ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-truck-loading"></i>
-                                <p>
-                                    Stock Silo
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item <?= $menuGroup == 'ReportProduksi' ? 'menu-open' : '' ?>">
-                            <a href="#" class="nav-link <?= $menuGroup == 'ReportProduksi' ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-box-open"></i>
-                                <p>
-                                    Report Produksi
-                                    <i class="fas fa-angle-left right"></i>
-                                    <!-- <span class="badge badge-info right">6</span> -->
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <!-- <li class="nav-item">
+                        <?php if (session('level_user') == 'superadmin' || session('level_user') == 'admin' || session('level_user') == 'produksi'): ?>
+                            <li class="nav-item">
+                                <a href="/downtime" class="nav-link <?= $menu == 'Downtime' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-clock"></i>
+                                    <p>
+                                        Downtime
+                                    </p>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (session('level_user') == 'superadmin'): ?>
+                            <li class="nav-item">
+                                <a href="/spk" class="nav-link <?= $menu == 'Spk' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-toolbox"></i>
+                                    <p>
+                                        SPK
+                                    </p>
+                                </a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a href="/" class="nav-link <?= $menu == 'StockSilo' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-truck-loading"></i>
+                                    <p>
+                                        Stock Silo
+                                    </p>
+                                </a>
+                            </li> -->
+                            <li class="nav-item <?= $menuGroup == 'ReportProduksi' ? 'menu-open' : '' ?>">
+                                <a href="#" class="nav-link <?= $menuGroup == 'ReportProduksi' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-box-open"></i>
+                                    <p>
+                                        Report Produksi
+                                        <i class="fas fa-angle-left right"></i>
+                                        <!-- <span class="badge badge-info right">6</span> -->
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <!-- <li class="nav-item">
                                     <a href="/reportcycletime" class="nav-link <?= $menu == 'ReportCycletime' ? 'active' : '' ?>">
                                         <i class="fas fa-sync nav-icon"></i>
                                         <p>Cycle Time</p>
                                     </a>
                                 </li> -->
-                                <li class="nav-item">
-                                    <a href="/report" class="nav-link <?= $menu == 'Report' ? 'active' : '' ?>">
-                                        <i class="fas fa-file-pdf nav-icon"></i>
-                                        <p>Report</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/reportbyhour" class="nav-link <?= $menu == 'ReportByHour' ? 'active' : '' ?>">
-                                        <i class="fas fa-clock nav-icon"></i>
-                                        <p>Batch By Hour</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                    <li class="nav-item">
+                                        <a href="/report" class="nav-link <?= $menu == 'Report' ? 'active' : '' ?>">
+                                            <i class="fas fa-file-pdf nav-icon"></i>
+                                            <p>Report</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/reportbyhour" class="nav-link <?= $menu == 'ReportByHour' ? 'active' : '' ?>">
+                                            <i class="fas fa-clock nav-icon"></i>
+                                            <p>Batch By Hour</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
