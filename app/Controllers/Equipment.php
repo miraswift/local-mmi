@@ -134,6 +134,12 @@ class Equipment extends BaseController
 
                 return $this->response->setStatusCode(400)->setJSON($result);
             } else {
+                if ($status_equipment == 'OFF' && $name_equipment == 'MATERIAL LAIN LAIN') {
+                    $message = "Adjust Material \n\nBatch: $no_batch \nActual: $actual \nProduk: $name_product";
+
+                    sendMessageTelegram($message);
+                }
+
                 $result = [
                     'code' => 200,
                     'status' => 'ok',
