@@ -109,7 +109,7 @@ class Downtime extends BaseController
             $detailDone = $vars['detail_done_downtime'];
             $timeDone = date('H:i:s');
 
-            $message = "✅ DOWNTIME SELESAI ✅ \n\n📅 Tanggal: $date \n⚙️ Equipment: $equipment \n📝 Detail Downtime: $detail \n Detail Penyelesaian: $detailDone \n⏰ Start Time: $time \n🏁 Waktu Downtime: $timeDone \n\nStatus: Downtime telah selesai.";
+            $message = "✅ DOWNTIME SELESAI ✅ \n\n📅 Tanggal: $date \n⚙️ Equipment: $equipment \n📝 Detail Downtime: $detail \n \n📝 Detail Penyelesaian: $detailDone \n⏰ Start Time: $time \n🏁 Waktu Downtime: $timeDone \n\nStatus: Downtime telah selesai.";
 
             sendMessageTelegram($message);
 
