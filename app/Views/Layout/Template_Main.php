@@ -132,7 +132,7 @@
                                 </p>
                             </a>
                         </li>
-                        <?php if (session('level_user') == 'superadmin' || session('level_user') == 'admin' || session('level_user') == 'produksi'): ?>
+                        <?php if (session('level_user') == 'superadmin' || session('level_user') == 'admin' || session('level_user') == 'produksi' || session('level_user') == 'maintennance'): ?>
                             <li class="nav-item">
                                 <a href="/downtime" class="nav-link <?= $menu == 'Downtime' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-clock"></i>

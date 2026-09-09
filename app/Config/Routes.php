@@ -31,7 +31,7 @@ $routes->post('/additif/create', 'Additif::create');
 // Auth
 $routes->get('/login', 'Auth::index');
 $routes->post('/login/validate', 'Auth::login');
-$routes->post('/logout', 'Auth::logout');
+$routes->get('/logout', 'Auth::logout');
 // Downtime
 $routes->get('/downtime', 'Downtime::index');
 $routes->post('/downtime/create', 'Downtime::create');
