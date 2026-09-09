@@ -151,7 +151,8 @@
                                     </p>
                                 </a>
                             </li>
-                            <!-- <li class="nav-item">
+                        <?php endif; ?>
+                        <!-- <li class="nav-item">
                                 <a href="/" class="nav-link <?= $menu == 'StockSilo' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-truck-loading"></i>
                                     <p>
@@ -159,37 +160,36 @@
                                     </p>
                                 </a>
                             </li> -->
-                            <li class="nav-item <?= $menuGroup == 'ReportProduksi' ? 'menu-open' : '' ?>">
-                                <a href="#" class="nav-link <?= $menuGroup == 'ReportProduksi' ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-box-open"></i>
-                                    <p>
-                                        Report Produksi
-                                        <i class="fas fa-angle-left right"></i>
-                                        <!-- <span class="badge badge-info right">6</span> -->
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <!-- <li class="nav-item">
+                        <li class="nav-item <?= $menuGroup == 'ReportProduksi' ? 'menu-open' : '' ?>">
+                            <a href="#" class="nav-link <?= $menuGroup == 'ReportProduksi' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box-open"></i>
+                                <p>
+                                    Report Produksi
+                                    <i class="fas fa-angle-left right"></i>
+                                    <!-- <span class="badge badge-info right">6</span> -->
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <!-- <li class="nav-item">
                                     <a href="/reportcycletime" class="nav-link <?= $menu == 'ReportCycletime' ? 'active' : '' ?>">
                                         <i class="fas fa-sync nav-icon"></i>
                                         <p>Cycle Time</p>
                                     </a>
                                 </li> -->
-                                    <li class="nav-item">
-                                        <a href="/report" class="nav-link <?= $menu == 'Report' ? 'active' : '' ?>">
-                                            <i class="fas fa-file-pdf nav-icon"></i>
-                                            <p>Report</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/reportbyhour" class="nav-link <?= $menu == 'ReportByHour' ? 'active' : '' ?>">
-                                            <i class="fas fa-clock nav-icon"></i>
-                                            <p>Batch By Hour</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        <?php endif; ?>
+                                <li class="nav-item">
+                                    <a href="/report" class="nav-link <?= $menu == 'Report' ? 'active' : '' ?>">
+                                        <i class="fas fa-file-pdf nav-icon"></i>
+                                        <p>Report</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/reportbyhour" class="nav-link <?= $menu == 'ReportByHour' ? 'active' : '' ?>">
+                                        <i class="fas fa-clock nav-icon"></i>
+                                        <p>Batch By Hour</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
