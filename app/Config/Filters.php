@@ -81,6 +81,12 @@ class Filters extends BaseFilters
                 'except' => [
                     'login',
                     'login/*',
+                    'equipment',
+                    'equipment/*',
+                    'additif',
+                    'additif/*',
+                    'selector',
+                    'selector/*',
                 ]
             ]
         ],
