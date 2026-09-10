@@ -130,7 +130,15 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
-                                                                            <label for="detail_done_downtime" class="col-form-label">Detail / Keterangan Downtime</label>
+                                                                            <label for="detail_downtime" class="col-form-label">Detail / Keterangan Downtime</label>
+                                                                            <textarea name="detail_downtime" id="" cols="30" rows="5" class="form-control" readonly><?= $downtime['detail_downtime'] ?></textarea>
+                                                                            <!-- Validation Error Msg -->
+                                                                            <div id="detail_downtime_error" class="invalid-feedback">
+                                                                                <?= validation_show_error('detail_downtime') ?>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="detail_done_downtime" class="col-form-label">Detail / Keterangan Penyelesaian</label>
                                                                             <textarea name="detail_done_downtime" id="" cols="30" rows="5" class="form-control"></textarea>
                                                                             <!-- Validation Error Msg -->
                                                                             <div id="detail_done_downtime_error" class="invalid-feedback">
