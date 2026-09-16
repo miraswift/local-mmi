@@ -62,7 +62,7 @@ class Downtime extends BaseController
 
             $message = "🚨 UPDATE DOWNTIME REPORT 🚨 \n\n📅 Tanggal: $date \n⚙️ Equipment: $equipment \n📝 Detail Downtime: $detail \n⏰ Start Time (Sheet): $time \n⏱️ Waktu Update: $time WIB \n\nStatus: Dalam penanganan / terjadi perubahan detail.";
 
-            $return = sendMessageTelegram($message);
+            $return = sendMessageDownimeAlarm($message);
 
             session()->setFlashdata('success', 'Berhasil menyimpan data' . json_encode($return));
             return redirect()->to('/downtime');
@@ -111,7 +111,7 @@ class Downtime extends BaseController
 
             $message = "✅ DOWNTIME SELESAI ✅ \n\n📅 Tanggal: $date \n⚙️ Equipment: $equipment \n📝 Detail Downtime: $detail \n \n📝 Detail Penyelesaian: $detailDone \n⏰ Start Time: $time \n🏁 Waktu Downtime: $timeDone \n\nStatus: Downtime telah selesai.";
 
-            sendMessageTelegram($message);
+            sendMessageDownimeAlarm($message);
 
             session()->setFlashdata('success', 'Berhasil menyimpan data');
             return redirect()->to('/downtime');
