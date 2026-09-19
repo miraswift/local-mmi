@@ -52,7 +52,7 @@ class EquipmentModel extends Model
         $this->where('date_equipment >=', $dateFrom);
         $this->where('date_equipment <=', $dateTo);
         $this->groupBy('no_spk');
-        $this->orderBy('no_spk', 'DESC');
+        $this->orderBy('created_at', 'DESC');
 
         return $this->findAll();
     }
@@ -61,7 +61,7 @@ class EquipmentModel extends Model
     {
         $this->where('no_spk', $no_spk);
         $this->groupBy('no_spk');
-        $this->orderBy('no_spk', 'DESC');
+        $this->orderBy('created_at', 'DESC');
 
         return $this->first();
     }
