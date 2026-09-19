@@ -64,7 +64,9 @@
                                                         <?php endif; ?>
                                                     <?php endif; ?>
                                                     <?php if (session('level_user') == 'superadmin' || session('level_user') == 'admin'): ?>
-                                                        <a href="#" data-toggle="modal" data-target="#delete-modal<?= $downtime['id_downtime'] ?>" class="btn bg-danger" title="Hapus"><i class="fas fa-trash"></i></a>
+                                                        <?php if ($downtime['status_downtime'] == 'Waiting'): ?>
+                                                            <a href="#" data-toggle="modal" data-target="#delete-modal<?= $downtime['id_downtime'] ?>" class="btn bg-danger" title="Hapus"><i class="fas fa-trash"></i></a>
+                                                        <?php endif; ?>
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>
