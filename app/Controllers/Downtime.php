@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\DowntimeModel;
+use App\Models\EquipmentDowntimeModel;
 
 class Downtime extends BaseController
 {
@@ -12,17 +13,25 @@ class Downtime extends BaseController
     public function __construct()
     {
         $this->downtimeModel = new DowntimeModel();
-        $this->equipmentDowntimeModel = new DowntimeModel();
+        $this->equipmentDowntimeModel = new EquipmentDowntimeModel();
     }
 
     public function index()
     {
+        $dateFilter = $this->request->getGet('date');
+
+        $date = date('Y-m-d');
+
+        if ($dateFilter) {
+            $date = date('Y-m-d', strtotime($dateFilter));
+        }
+
         $data['title'] = 'Downtime';
         $data['menuGroup'] = '';
         $data['menu'] = 'Downtime';
 
-        $data['equipmentDowntimes'] = $this->equipmentDowntimeModel->orderBy('name_equipment_downtime', 'DESC')->findAll();
-        $data['downtimes'] = $this->downtimeModel->orderBy('created_at', 'DESC')->findAll();
+        $data['equipmentDowntimes'] = $this->equipmentDowntimeModel->orderBy('name_equipment_downtime', 'ASC')->findAll();
+        $data['downtimes'] = $this->downtimeModel->where('DATE(created_at)', $date)->orderBy('created_at', 'DESC')->findAll();
 
         return view('Downtime/Index', $data);
     }

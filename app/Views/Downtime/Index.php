@@ -20,6 +20,27 @@
     </div>
     <!-- /.content-header -->
 
+    <?php
+
+    $total_downtime_card = 0;
+
+    foreach ($downtimes as $downtime) {
+        $start_downtime = new DateTime($downtime['date_start_downtime']);
+        $end_downtime = new DateTime($downtime['date_done_downtime']);
+
+        $dwntime_diff = $start_downtime->diff($end_downtime);
+
+        $total_downtime = $dwntime_diff->days . "Hari " . $dwntime_diff->h . "Jam " . $dwntime_diff->i . "Menit " . $dwntime_diff->s . "Detik";
+
+        $total_minutes = ($dwntime_diff->days * 24 * 60);
+        $total_minutes += ($dwntime_diff->h * 60);
+        $total_minutes += $dwntime_diff->i;
+
+        $total_downtime_card += $total_minutes;
+    }
+
+    ?>
+
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -29,19 +50,19 @@
                     <div class="row">
                         <div class="col-12 col-sm-6 col-md-2">
                             <div class="info-box shadow-none">
-                                <span class="info-box-icon bg-olive elevation-1"><i class="fas fa-money-bill-wave"></i></span>
+                                <span class="info-box-icon bg-olive elevation-1"><i class="fas fa-clock"></i></span>
 
                                 <div class="info-box-content">
-                                    <span class="info-box-text">Ttl Bon</span>
+                                    <span class="info-box-text">Ttl Downtime</span>
                                     <span class="info-box-number">
-                                        <?= 0 ?>
+                                        <?= number_format($total_downtime_card / 60, 2, '.', ',') . " Jam" ?>
                                         <!-- <small>%</small> -->
                                     </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-2">
-                            <div class="info-box shadow-none">
+                            <!-- <div class="info-box shadow-none">
                                 <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-money-check-alt"></i></span>
 
                                 <div class="info-box-content">
@@ -50,10 +71,10 @@
                                         <?= 0 ?>
                                     </span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="col-12 col-sm-6 col-md-2">
-                            <div class="info-box shadow-none">
+                            <!-- <div class="info-box shadow-none">
                                 <span class="info-box-icon bg-purple elevation-1"><i class="fas fa-money-bill"></i></span>
 
                                 <div class="info-box-content">
@@ -62,7 +83,7 @@
                                         <?= 0 ?>
                                     </span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="col-12 col-sm-6 col-md-2">
                         </div>
@@ -90,8 +111,11 @@
                                         <tr>
                                             <th class="text-center">No</th>
                                             <th>Nama</th>
+                                            <th>Detail</th>
+                                            <th>Penyelesaian</th>
                                             <th>Start Downtime</th>
                                             <th>Done Downtime</th>
+                                            <th>Total Downtime</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -99,11 +123,26 @@
                                         <?php
                                         $no = 1;
                                         foreach ($downtimes as $downtime): ?>
+                                            <?php
+                                            $start_downtime = new DateTime($downtime['date_start_downtime']);
+                                            $end_downtime = new DateTime($downtime['date_done_downtime']);
+
+                                            $dwntime_diff = $start_downtime->diff($end_downtime);
+
+                                            $total_downtime = $dwntime_diff->days . "Hari " . $dwntime_diff->h . "Jam " . $dwntime_diff->i . "Menit " . $dwntime_diff->s . "Detik";
+
+                                            $total_minutes = ($dwntime_diff->days * 24 * 60);
+                                            $total_minutes += ($dwntime_diff->h * 60);
+                                            $total_minutes += $dwntime_diff->i;
+                                            ?>
                                             <tr>
                                                 <td class="text-center"><?= $no++ ?></td>
                                                 <td><?= $downtime['equipment_downtime'] ?></td>
+                                                <td><?= $downtime['detail_downtime'] ?></td>
+                                                <td><?= $downtime['detail_done_downtime'] ?></td>
                                                 <td><?= $downtime['date_start_downtime'] ?></td>
                                                 <td><?= $downtime['date_done_downtime'] ?? 'Dalam penanganan' ?></td>
+                                                <td><?= $total_minutes / 60 . " Jam" ?></td>
                                                 <!-- <td class="text-right">
                                                     <div class="d-flex justify-content-between">
                                                         <div class="text-left">Rp</div>
@@ -251,30 +290,9 @@
                             <div class="form-group">
                                 <label for="name_downtime" class="col-form-label">Equipment</label>
                                 <select name="equipment_downtime" id="" class="form-control select2bs4">
-                                    <option value="Jetflo 1">Jetflo 1</option>
-                                    <option value="Jetflo 2">Jetflo 2</option>
-                                    <option value="Jetflo Powder">Jetflo Powder</option>
-                                    <option value="Screw Pasir 1">Screw Pasir 1</option>
-                                    <option value="Screw Pasir 2">Screw Pasir 2</option>
-                                    <option value="Screw Semen">Screw Semen</option>
-                                    <option value="Screw Kapur">Screw Kapur</option>
-                                    <option value="Hopper Additif">Hopper Additif</option>
-                                    <option value="Weighing Hopper Powder">Weighing Hopper Powder</option>
-                                    <option value="Weighing Hopper Pasir">Weighing Hopper Pasir</option>
-                                    <option value="Mixer 1 Ton">Mixer 1 Ton</option>
-                                    <option value="Packer">Packer</option>
-                                    <option value="Jetflo Tile Grout">Jetflo Tile Grout</option>
-                                    <option value="Mixer Tile Grout">Mixer Tile Grout</option>
-                                    <option value="Auger">Auger</option>
-                                    <option value="Ketrukan">Ketrukan</option>
-                                    <option value="Mesin Seal">Mesin Seal</option>
-                                    <option value="Vibrator Fletening">Vibrator Fletening</option>
-                                    <option value="Kompressor 1">Kompressor 1</option>
-                                    <option value="Kompressor 2">Kompressor 2</option>
-                                    <option value="Forklift Merah">Forklift Merah</option>
-                                    <option value="Forklift Putih">Forklift Putih</option>
-                                    <option value="Loader">Loader</option>
-                                    <option value="Lain-Lain">Lain-Lain</option>
+                                    <?php foreach ($equipmentDowntimes as $equipmentDowntime): ?>
+                                        <option value="<?= $equipmentDowntime['name_equipment_downtime'] ?>"><?= $equipmentDowntime['name_equipment_downtime'] ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                                 <!-- Validation Error Msg -->
                                 <div id="name_downtime_error" class="invalid-feedback">
@@ -287,6 +305,45 @@
                                 <!-- Validation Error Msg -->
                                 <div id="detail_downtime_error" class="invalid-feedback">
                                     <?= validation_show_error('detail_downtime') ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn bg-teal">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Filter Modal -->
+<div class="modal fade" id="filter-modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah <?= $title ?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/downtime" method="get">
+                <div class="modal-body">
+                    <?php if (session()->getFlashdata('failed')) : ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong><i class="fas fa-exclamation-triangle"></i></strong> &nbsp; <?= session()->getFlashdata('failed') ?>
+                            <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button> -->
+                        </div>
+                    <?php endif; ?>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="date" class="col-form-label">Tanggal</label>
+                                <input type="date" name="date" class="form-control">
+                                <div id="date_error" class="invalid-feedback">
+                                    <?= validation_show_error('date') ?>
                                 </div>
                             </div>
                         </div>

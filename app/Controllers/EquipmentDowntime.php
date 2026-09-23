@@ -20,7 +20,7 @@ class EquipmentDowntime extends BaseController
         $data['menuGroup'] = '';
         $data['menu'] = 'EquipmentDowntime';
 
-        $data['equipmentDowntimes'] = $this->equipmentDowntimeModel->orderBy('name_equipment_downtime', 'ASC')->findAll();
+        $data['equipmentDowntimes'] = $this->equipmentDowntimeModel->orderBy('created_at', 'DESC')->findAll();
 
         return view('EquipmentDowntime/Index', $data);
     }
