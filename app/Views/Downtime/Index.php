@@ -142,7 +142,7 @@
                                                 <td><?= $downtime['detail_done_downtime'] ?></td>
                                                 <td><?= $downtime['date_start_downtime'] ?></td>
                                                 <td><?= $downtime['date_done_downtime'] ?? 'Dalam penanganan' ?></td>
-                                                <td><?= $total_minutes / 60 . " Jam" ?></td>
+                                                <td><?= number_format($total_downtime_card / 60, 2, '.', ',') . " Jam" ?></td>
                                                 <!-- <td class="text-right">
                                                     <div class="d-flex justify-content-between">
                                                         <div class="text-left">Rp</div>
