@@ -132,16 +132,28 @@
                                 </p>
                             </a>
                         </li>
+                        <div class="nav-header">DOWNTIME</div>
                         <?php if (session('level_user') == 'superadmin' || session('level_user') == 'admin' || session('level_user') == 'produksi' || session('level_user') == 'maintennance'): ?>
                             <li class="nav-item">
-                                <a href="/downtime" class="nav-link <?= $menu == 'Downtime' ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-clock"></i>
+                                <a href="/equipment-downtime" class="nav-link <?= $menu == 'EquipmentDowntime' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-gamepad"></i>
                                     <p>
-                                        Downtime
+                                        Equipment Downtime
                                     </p>
                                 </a>
                             </li>
+                            <?php if (session('level_user') == 'superadmin'): ?>
+                                <li class="nav-item">
+                                    <a href="/downtime" class="nav-link <?= $menu == 'Downtime' ? 'active' : '' ?>">
+                                        <i class="nav-icon fas fa-clock"></i>
+                                        <p>
+                                            Downtime
+                                        </p>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
                         <?php endif; ?>
+                        <div class="nav-header">PRODUKSI</div>
                         <?php if (session('level_user') == 'superadmin'): ?>
                             <li class="nav-item">
                                 <a href="/spk" class="nav-link <?= $menu == 'Spk' ? 'active' : '' ?>">
@@ -151,6 +163,7 @@
                                     </p>
                                 </a>
                             </li>
+
                         <?php endif; ?>
                         <!-- <li class="nav-item">
                                 <a href="/" class="nav-link <?= $menu == 'StockSilo' ? 'active' : '' ?>">

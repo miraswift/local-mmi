@@ -23,6 +23,59 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-12 col-12">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-2">
+                            <div class="info-box shadow-none">
+                                <span class="info-box-icon bg-olive elevation-1"><i class="fas fa-money-bill-wave"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Ttl Bon</span>
+                                    <span class="info-box-number">
+                                        <?= 0 ?>
+                                        <!-- <small>%</small> -->
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-2">
+                            <div class="info-box shadow-none">
+                                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-money-check-alt"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Ttl Byr</span>
+                                    <span class="info-box-number">
+                                        <?= 0 ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-2">
+                            <div class="info-box shadow-none">
+                                <span class="info-box-icon bg-purple elevation-1"><i class="fas fa-money-bill"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Sisa</span>
+                                    <span class="info-box-number">
+                                        <?= 0 ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-2">
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-2">
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-2">
+                            <a class="btn btn-success btn-block py-3" data-toggle="modal" data-target="#filter-modal">
+                                <h3><i class="fas fa-filter"></i>&nbsp;&nbsp;Filter</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Main row -->
             <div class="row">
                 <div class="col-12">

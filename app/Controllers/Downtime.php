@@ -7,10 +7,12 @@ use App\Models\DowntimeModel;
 class Downtime extends BaseController
 {
     protected $downtimeModel;
+    protected $equipmentDowntimeModel;
 
     public function __construct()
     {
         $this->downtimeModel = new DowntimeModel();
+        $this->equipmentDowntimeModel = new DowntimeModel();
     }
 
     public function index()
@@ -19,6 +21,7 @@ class Downtime extends BaseController
         $data['menuGroup'] = '';
         $data['menu'] = 'Downtime';
 
+        $data['equipmentDowntimes'] = $this->equipmentDowntimeModel->orderBy('name_equipment_downtime', 'DESC')->findAll();
         $data['downtimes'] = $this->downtimeModel->orderBy('created_at', 'DESC')->findAll();
 
         return view('Downtime/Index', $data);

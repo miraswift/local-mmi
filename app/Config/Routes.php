@@ -37,3 +37,8 @@ $routes->get('/downtime', 'Downtime::index');
 $routes->post('/downtime/create', 'Downtime::create');
 $routes->post('/downtime/update', 'Downtime::update');
 $routes->post('/downtime/delete', 'Downtime::delete');
+// Equipment Downtime
+$routes->get('/equipment-downtime', 'EquipmentDowntime::index');
+$routes->post('/equipment-downtime/create', 'EquipmentDowntime::create');
+$routes->post('/equipment-downtime/update', 'EquipmentDowntime::update');
+$routes->post('/equipment-downtime/delete', 'EquipmentDowntime::delete');
