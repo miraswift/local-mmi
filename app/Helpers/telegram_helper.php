@@ -12,7 +12,7 @@ function sendMessageTelegram($message)
     ];
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.telegram.org/bot8991694337:AAFB0613trOYjDKE3yKy7Mxw3PkMSKo63Nk/sendMessage',
+        CURLOPT_URL => 'https://api.telegram.org/bot8991694337:AAH6i3C2SxQiTlXoPjSUZgVrlpyCcU3IIiw/sendMessage',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -45,7 +45,7 @@ function sendMessageDownimeAlarm($message)
     ];
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.telegram.org/bot8991694337:AAFB0613trOYjDKE3yKy7Mxw3PkMSKo63Nk/sendMessage',
+        CURLOPT_URL => 'https://api.telegram.org/bot8991694337:AAH6i3C2SxQiTlXoPjSUZgVrlpyCcU3IIiw/sendMessage',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
