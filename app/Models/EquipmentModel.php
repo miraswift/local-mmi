@@ -139,7 +139,7 @@ class EquipmentModel extends Model
     public function getWeighingDischargeFirst($no_spk, $no_batch)
     {
         $this->select('MIN(id_equipment) AS id_equipment');
-        $this->like('name_equipment', 'DISSCHARGE');
+        $this->whereIn('name_equipment', ['DISSCHARGE POWDER', 'DISSCHARGE PASIR']);
         $this->where('status_equipment', 'ON');
         $this->where('no_spk', $no_spk);
         $this->where('no_batch', $no_batch);
@@ -150,7 +150,7 @@ class EquipmentModel extends Model
     public function getWeighingDischargeLast($no_spk, $no_batch)
     {
         $this->select('MAX(id_equipment) AS id_equipment');
-        $this->like('name_equipment', 'DISSCHARGE');
+        $this->whereIn('name_equipment', ['DISSCHARGE POWDER', 'DISSCHARGE PASIR']);
         $this->where('status_equipment', 'OFF');
         $this->where('no_spk', $no_spk);
         $this->where('no_batch', $no_batch);
