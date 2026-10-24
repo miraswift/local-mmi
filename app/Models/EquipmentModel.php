@@ -88,6 +88,54 @@ class EquipmentModel extends Model
         return $this->first();
     }
 
+    public function getDossingPowderFirst($no_spk, $no_batch)
+    {
+        $this->select('MIN(id_equipment) AS id_equipment');
+        $this->where('type_equipment', 'DOSSING');
+        $this->where('status_equipment', 'ON');
+        $this->whereIn('name_equipment', ['FEEDING SEMEN GREY', 'FEEDING SEMEN PUTIH', 'FEEDING KAPUR']);
+        $this->where('no_spk', $no_spk);
+        $this->where('no_batch', $no_batch);
+
+        return $this->first();
+    }
+
+    public function getDossingPowderLast($no_spk, $no_batch)
+    {
+        $this->select('MAX(id_equipment) AS id_equipment');
+        $this->where('type_equipment', 'DOSSING');
+        $this->where('status_equipment', 'OFF');
+        $this->whereIn('name_equipment', ['FEEDING SEMEN GREY', 'FEEDING SEMEN PUTIH', 'FEEDING KAPUR']);
+        $this->where('no_spk', $no_spk);
+        $this->where('no_batch', $no_batch);
+
+        return $this->first();
+    }
+
+    public function getDossingPasirFirst($no_spk, $no_batch)
+    {
+        $this->select('MIN(id_equipment) AS id_equipment');
+        $this->where('type_equipment', 'DOSSING');
+        $this->where('status_equipment', 'ON');
+        $this->whereIn('name_equipment', ['FEEDING PASIR KASAR', 'FEEDING PASIR HALUS']);
+        $this->where('no_spk', $no_spk);
+        $this->where('no_batch', $no_batch);
+
+        return $this->first();
+    }
+
+    public function getDossingPasirLast($no_spk, $no_batch)
+    {
+        $this->select('MAX(id_equipment) AS id_equipment');
+        $this->where('type_equipment', 'DOSSING');
+        $this->where('status_equipment', 'OFF');
+        $this->whereIn('name_equipment', ['FEEDING PASIR KASAR', 'FEEDING PASIR HALUS']);
+        $this->where('no_spk', $no_spk);
+        $this->where('no_batch', $no_batch);
+
+        return $this->first();
+    }
+
     public function getWeighingDischargeFirst($no_spk, $no_batch)
     {
         $this->select('MIN(id_equipment) AS id_equipment');

@@ -122,12 +122,12 @@
                         $totalMaterialTime += strtotime($dossingTime['duration_equipment']) - strtotime('TODAY');
                     }
                 }
-                // Dossing Time
+                // Dossing Time Powder
                 $totalDossingTime = new DateTime('00:00:00');
                 $cloneTotalDossingTime = clone $totalDossingTime;
-                $idDossingFirst = $equipmentModel->getDossingFirst($no_spk, $no_batch);
+                $idDossingFirst = $equipmentModel->getDossingPowderFirst($no_spk, $no_batch);
                 $dossingFirst = $equipmentModel->where('id_equipment', $idDossingFirst['id_equipment'])->first();
-                $idDossingLast = $equipmentModel->getDossingLast($no_spk, $no_batch);
+                $idDossingLast = $equipmentModel->getDossingPowderLast($no_spk, $no_batch);
                 $dossingLast = $equipmentModel->where('id_equipment', $idDossingLast['id_equipment'])->first();
 
                 // Null check
@@ -154,6 +154,40 @@
                     $intervalDossingTime->h + ($intervalDossingTime->d * 24), // jika interval lebih dari 1 hari, jam harus ditambah
                     $intervalDossingTime->i,
                     $intervalDossingTime->s
+                );
+
+                // Dossing Time Pasir
+                $totalDossingTimePasir = new DateTime('00:00:00');
+                $cloneTotalDossingTimePasir = clone $totalDossingTimePasir;
+                $idDossingFirstPasir = $equipmentModel->getDossingPasirFirst($no_spk, $no_batch);
+                $dossingFirstPasir = $equipmentModel->where('id_equipment', $idDossingFirstPasirPasir['id_equipment'])->first();
+                $idDossingLastPasir = $equipmentModel->getDossingPasirLast($no_spk, $no_batch);
+                $dossingLastPasir = $equipmentModel->where('id_equipment', $idDossingLastPasirPasir['id_equipment'])->first();
+
+                // Null check
+                $dossingTimeOnPasir = $batch['date_equipment'] . " " . "00:00:00";
+                if ($dossingFirstPasir) {
+                    $dossingTimeOnPasir = $dossingFirstPasir['date_equipment'] . " " . $dossingFirstPasir['time_equipment'];
+                }
+
+                // Null check
+                $dossingTimeOffPasir = $batch['date_equipment'] . " " . "00:00:00";
+                if ($dossingLastPasir) {
+                    $dossingTimeOffPasir = $dossingLastPasir['date_equipment'] . " " . $dossingLastPasir['time_equipment'];
+                }
+
+                $dossingTime1Pasir = new DateTime(date("H:i:s", strtotime($dossingTimeOnPasir)));
+                $dossingTime2Pasir = new DateTime(date("H:i:s", strtotime($dossingTimeOffPasir)));
+                $dossingTimeDiffPasir = $dossingTime1Pasir->diff($dossingTime2Pasir);
+                $totalDossingTimePasir->add($dossingTimeDiffPasir);
+
+                $intervalDossingTimePasir = $cloneTotalDossingTimePasir->diff($totalDossingTimePasir);
+
+                $intervalTotalDossingTimePasir = sprintf(
+                    "%02d:%02d:%02d",
+                    $intervalDossingTimePasir->h + ($intervalDossingTimePasir->d * 24), // jika interval lebih dari 1 hari, jam harus ditambah
+                    $intervalDossingTimePasir->i,
+                    $intervalDossingTimePasir->s
                 );
                 // $delayTime = $resDossingTime - $resMaterialTime;
                 // $resultDelayTime = gmdate("H:i:s", abs($delayTime));
@@ -250,17 +284,21 @@
                 // $resMaterialTime = strtotime("1970-01-01 " . gmdate("H:i:s", abs($totalMaterialTime)));
 
                 list($hDossing, $mDossing, $sDossing) = explode(":", $intervalTotalDossingTime);
+                list($hDossingPasir, $mDossingPasir, $sDossingPasir) = explode(":", $intervalTotalDossingTimePasir);
                 list($hWeighingDischarge, $mWeighingDischarge, $sWeighingDischarge) = explode(":", $intervalTotalWeighingDischargeTime);
                 list($hMixing, $mMixing, $sMixing) = explode(":", $intervalTotalMixingTime);
                 //  !!
                 $scndDossingTime = $hDossing * 3600 + $mDossing * 60 + $sDossing;
+                $scndDossingTimePasir = $hDossingpasir * 3600 + $mDossingpasir * 60 + $sDossingpasir;
                 $scndWeighingDischargeTime = $hWeighingDischarge * 3600 + $mWeighingDischarge * 60 + $sWeighingDischarge;
                 $scndMixing = $hMixing * 3600 + $mMixing * 60 + $sMixing;
                 // Feeding Cycle Time
-                $feedingCycleTime = $scndDossingTime + $scndWeighingDischargeTime;
+                $longetDossingtime = max($scndDossingTime, $scndDossingTimePasir);
+                $feedingCycleTime = $longetDossingtime + $scndWeighingDischargeTime;
                 $resultFeedingTime = gmdate("H:i:s", abs($feedingCycleTime));
                 // Cycletime
-                $cycleTime = $feedingCycleTime + $scndMixing;
+                $longestTimeMixAndDossing = max($feedingCycleTime, $scndMixing);
+                $cycleTime = $longestTimeMixAndDossing;
                 $resultCycleTime = gmdate("H:i:s", abs($cycleTime));
 
                 $batchSummary = [
