@@ -160,9 +160,9 @@
                 $totalDossingTimePasir = new DateTime('00:00:00');
                 $cloneTotalDossingTimePasir = clone $totalDossingTimePasir;
                 $idDossingFirstPasir = $equipmentModel->getDossingPasirFirst($no_spk, $no_batch);
-                $dossingFirstPasir = $equipmentModel->where('id_equipment', $idDossingFirstPasirPasir['id_equipment'])->first();
+                $dossingFirstPasir = $equipmentModel->where('id_equipment', $idDossingFirstPasir['id_equipment'])->first();
                 $idDossingLastPasir = $equipmentModel->getDossingPasirLast($no_spk, $no_batch);
-                $dossingLastPasir = $equipmentModel->where('id_equipment', $idDossingLastPasirPasir['id_equipment'])->first();
+                $dossingLastPasir = $equipmentModel->where('id_equipment', $idDossingLastPasir['id_equipment'])->first();
 
                 // Null check
                 $dossingTimeOnPasir = $batch['date_equipment'] . " " . "00:00:00";
