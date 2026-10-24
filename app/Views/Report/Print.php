@@ -289,7 +289,7 @@
                 list($hMixing, $mMixing, $sMixing) = explode(":", $intervalTotalMixingTime);
                 //  !!
                 $scndDossingTime = $hDossing * 3600 + $mDossing * 60 + $sDossing;
-                $scndDossingTimePasir = $hDossingpasir * 3600 + $mDossingpasir * 60 + $sDossingpasir;
+                $scndDossingTimePasir = $hDossingPasir * 3600 + $mDossingPasir * 60 + $sDossingPasir;
                 $scndWeighingDischargeTime = $hWeighingDischarge * 3600 + $mWeighingDischarge * 60 + $sWeighingDischarge;
                 $scndMixing = $hMixing * 3600 + $mMixing * 60 + $sMixing;
                 // Feeding Cycle Time
